@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using StackExchange.Redis;
 using TarefaProcessorApi.Data;
 using TarefaProcessorApi.Services;
@@ -12,6 +11,8 @@ builder.Services.AddDbContext<MyDbContext>(options =>
 
 builder.Services.AddSingleton<IConnectionMultiplexer>(
     ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("Redis")));
+
+builder.Services.AddScoped<CodigoProcessor>();
 
 builder.Services.AddScoped<TarefaProcessor>();
 
